@@ -1,0 +1,76 @@
+{
+  "name": "@blackbox-vision/ra-data-microservices",
+  "version": "1.0.0",
+  "description": "React Admin data provider with support for microservices",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf pkg",
+    "publish": "pika publish",
+    "build": "npm run clean && pika build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "version": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlackBoxVision/ra-data-microservices.git"
+  },
+  "keywords": [
+    "react-admin",
+    "data-provider",
+    "microservices"
+  ],
+  "author": "Jonatan Salas <jonatan.salas@blackbox-vision.tech>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BlackBoxVision/ra-data-microservices/issues"
+  },
+  "homepage": "https://github.com/BlackBoxVision/ra-data-microservices#readme",
+  "peerDependencies": {
+    "query-string": "^6.12.1",
+    "ra-core": "^3.5.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.9.2",
+    "@pika/plugin-build-types": "^0.9.2",
+    "@pika/plugin-build-web": "^0.9.2",
+    "@pika/plugin-standard-pkg": "^0.9.2",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.6",
+    "prettier": "^2.0.5",
+    "query-string": "^6.12.1",
+    "ra-core": "^3.5.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.3"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-node"
+      ],
+      [
+        "@pika/plugin-build-web"
+      ],
+      [
+        "@pika/plugin-build-types"
+      ]
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
