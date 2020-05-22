@@ -24,7 +24,7 @@ export type MicroServiceConfig = {
  *
  * import React from 'react';
  * import { Admin, Resource } from 'react-admin';
- * import microServicesProvider from '@blackbox-vision/ra-data-microservices';
+ * import { microServicesProvider } from '@blackbox-vision/ra-data-microservices';
  *
  * import { PostList } from './posts';
  *
