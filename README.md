@@ -24,6 +24,8 @@ You use react-admin for building a frontend to manage CRUD resources, and you ha
 
 ## Example Usage
 
+### Normal usage
+
 ```javascript
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
@@ -31,10 +33,34 @@ import { microServicesProvider } from '@blackbox-vision/ra-data-microservices';
 
 import { PostList } from './posts';
 
+const dataProvider = microServicesProvider({ posts: 'http://posts.api.url' });
+
 const App = () => (
-  <Admin
-    dataProvider={microServicesProvider({ posts: 'http://posts.api.url' })}
-  >
+  <Admin dataProvider={dataProvider}>
+    <Resource name="posts" list={PostList} />
+  </Admin>
+);
+
+export default App;
+```
+
+### Passing a custom HTTP Client
+
+```javascript
+import React from 'react';
+import { Admin, Resource } from 'react-admin';
+import { microServicesProvider } from '@blackbox-vision/ra-data-microservices';
+
+import { PostList } from './posts';
+
+const customHttpClient = (url, options = {}) => {};
+const dataProvider = microServicesProvider(
+  { posts: 'http://posts.api.url' },
+  customHttpClient,
+);
+
+const App = () => (
+  <Admin dataProvider={dataProvider}>
     <Resource name="posts" list={PostList} />
   </Admin>
 );
